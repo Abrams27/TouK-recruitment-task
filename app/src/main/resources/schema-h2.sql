@@ -8,7 +8,7 @@ CREATE TABLE MOVIE_DIRECTOR (
 
 CREATE TABLE MOVIE (
     id                  NUMBER              NOT NULL,
-    name                NUMBER              NOT NULL,
+    name                TEXT                NOT NULL,
     runtime             NUMBER              NOT NULL,
     director            NUMBER              NOT NULL,
 
@@ -83,7 +83,6 @@ CREATE TABLE SCREENING (
 
 CREATE TABLE SCREENING_ROOM (
     id                  NUMBER              NOT NULL,
-
 
     CONSTRAINT screening_room_pk PRIMARY KEY (id)
 
