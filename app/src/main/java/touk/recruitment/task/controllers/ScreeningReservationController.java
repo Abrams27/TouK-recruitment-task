@@ -1,7 +1,7 @@
 package touk.recruitment.task.controllers;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +24,12 @@ public class ScreeningReservationController implements ScreeningReservationApi {
   private PostReservation postReservation;
 
   @Override
-  public List<AvailableScreeningsDto> getAvailableScreening(Date day, LocalTime intervalBegin, LocalTime intervalEnd) {
-    return getAvailableScreening.execute(day, intervalBegin, intervalEnd);
+  public List<AvailableScreeningsDto> getAvailableScreening(LocalDate date, LocalTime intervalBeginning, LocalTime intervalEnding) {
+    return getAvailableScreening.execute(date, intervalBeginning, intervalEnding);
   }
 
   @Override
-  public ScreeningRoomDto getScreeningDetails(Long id) {
+  public ResponseEntity<ScreeningRoomDto> getScreeningDetails(Long id) {
     return getScreeningDetails.execute(id);
   }
 

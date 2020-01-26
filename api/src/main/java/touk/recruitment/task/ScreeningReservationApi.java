@@ -1,8 +1,10 @@
 package touk.recruitment.task;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +22,13 @@ public interface ScreeningReservationApi {
 
   @GetMapping("/available")
   List<AvailableScreeningsDto> getAvailableScreening(
-      @RequestParam(required = true) Date day,
-      @RequestParam(required = true) LocalTime intervalBegin,
-      @RequestParam(required = true) LocalTime intervalEnd);
+      @RequestParam(required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate date,
+      @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME)LocalTime intervalBeginning,
+      @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME)LocalTime intervalEnding);
 
 
   @GetMapping("details/{id}")
-  ScreeningRoomDto getScreeningDetails(@PathVariable Long id);
+  ResponseEntity<ScreeningRoomDto> getScreeningDetails(@PathVariable Long id);
 
 
   @PostMapping("new-reservation")

@@ -1,4 +1,4 @@
-package touk.recruitment.task.repository.entities.room;
+package touk.recruitment.task.repositories.entities.ticket;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,28 +15,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import touk.recruitment.task.repositories.entities.reservation.ReservationEntity;
 
-@ToString
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
-@Table(name = "SETS_ROW")
-public class SeatsRowEntity {
+@Table(name = "TICKET")
+public class TicketEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private Integer rowNumber;
-
-  private Integer numberOfSeats;
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinColumn(name = "type", nullable = false)
+  private TicketTypeEntity type;
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name = "screening_room", nullable = false)
-  private ScreeningRoomEntity screeningRoom;
+  @JoinColumn(name = "reservation", nullable = false)
+  private ReservationEntity reservation;
 
 }

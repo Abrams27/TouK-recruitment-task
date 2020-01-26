@@ -1,4 +1,4 @@
-package touk.recruitment.task.repository.entities.reservation;
+package touk.recruitment.task.repositories.entities;
 
 import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
@@ -16,11 +16,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-import touk.recruitment.task.repository.entities.movie.MovieEntity;
-import touk.recruitment.task.repository.entities.room.ScreeningRoomEntity;
+import touk.recruitment.task.repositories.entities.movie.MovieEntity;
+import touk.recruitment.task.repositories.entities.room.ScreeningRoomEntity;
 
-@ToString
 @Getter
 @Setter
 @Builder
@@ -43,5 +41,4 @@ public class ScreeningEntity {
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "room", nullable = false)
   private ScreeningRoomEntity room;
-
 }

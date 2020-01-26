@@ -1,4 +1,4 @@
-package touk.recruitment.task.repository.entities.ticket;
+package touk.recruitment.task.repositories.entities.ticket;
 
 public enum TicketTypeEnum {
   ADULT,

@@ -1,4 +1,4 @@
-package touk.recruitment.task.repository.entities.room;
+package touk.recruitment.task.repositories.entities.movie;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,24 +11,21 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@ToString
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
-@Table(name = "SCREENING_ROOM")
-public class ScreeningRoomEntity {
+@Table(name = "MOVIE_DIRECTOR")
+public class MovieDirectorEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private Integer numberOfRows;
-
   private String name;
 
+  private String surname;
 }

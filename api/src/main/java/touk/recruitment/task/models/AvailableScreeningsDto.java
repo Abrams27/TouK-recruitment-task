@@ -9,6 +9,7 @@ import lombok.Data;
 public class AvailableScreeningsDto {
 
   private String movieTitle;
+  private Integer movieDuration;
   private List<MovieScreeningDto> screenings;
 
 }

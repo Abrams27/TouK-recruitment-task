@@ -10,6 +10,5 @@ public class MovieScreeningDto {
 
   private Long screeningId;
   private LocalDateTime screeningBeginning;
-  private Integer screeningDuration;
 
 }

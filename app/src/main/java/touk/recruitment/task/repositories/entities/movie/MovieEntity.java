@@ -1,5 +1,7 @@
-package touk.recruitment.task.repository.entities.ticket;
+package touk.recruitment.task.repositories.entities.movie;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,7 +18,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import touk.recruitment.task.repository.entities.reservation.ReservationEntity;
+import lombok.ToString;
+import touk.recruitment.task.repositories.entities.ScreeningEntity;
 
 @Getter
 @Setter
@@ -23,19 +27,22 @@ import touk.recruitment.task.repository.entities.reservation.ReservationEntity;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
-@Table(name = "TICKET")
-public class TicketEntity {
+@Table(name = "MOVIE")
+public class MovieEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name = "type", nullable = false)
-  private TicketTypeEntity type;
+  private String title;
+
+  private Integer runtime;
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name = "reservation", nullable = false)
-  private ReservationEntity reservation;
+  @JoinColumn(name = "director", nullable = false)
+  private MovieDirectorEntity director;
+
+  @OneToMany(mappedBy = "movie")
+  private Set<ScreeningEntity> screenings = new HashSet<>();
 
 }
