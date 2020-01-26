@@ -3,6 +3,7 @@ package touk.recruitment.task;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public interface ScreeningReservationApi {
 
 
   @PostMapping("new-reservation")
-  ReservationResponseDto postReservation(
+  ResponseEntity<ReservationResponseDto> postReservation(
       @RequestParam(required = true) Long id,
       @RequestBody(required = true) ReservationRequestDto request);
 
