@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -21,6 +24,8 @@ import lombok.Setter;
 @Table(name = "TICKET_TYPE")
 public class TicketTypeEntity {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Enumerated(EnumType.STRING)
