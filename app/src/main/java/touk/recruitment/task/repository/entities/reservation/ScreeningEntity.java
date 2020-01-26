@@ -16,9 +16,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import touk.recruitment.task.repository.entities.movie.MovieEntity;
 import touk.recruitment.task.repository.entities.room.ScreeningRoomEntity;
 
+@ToString
 @Getter
 @Setter
 @Builder

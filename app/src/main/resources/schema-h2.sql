@@ -8,7 +8,7 @@ CREATE TABLE MOVIE_DIRECTOR (
 
 CREATE TABLE MOVIE (
     id                  NUMBER              NOT NULL,
-    name                TEXT                NOT NULL,
+    title               TEXT                NOT NULL,
     runtime             NUMBER              NOT NULL,
     director            NUMBER              NOT NULL,
 
@@ -43,6 +43,8 @@ CREATE TABLE USER (
 
 CREATE TABLE SCREENING_ROOM (
     id                  NUMBER              NOT NULL,
+    number_of_rows      NUMBER              NOT NULL,
+    name                VARCHAR(30),
 
     CONSTRAINT screening_room_pk PRIMARY KEY (id)
 
@@ -50,6 +52,8 @@ CREATE TABLE SCREENING_ROOM (
 
 CREATE TABLE SEATS_ROW (
     id                  NUMBER              NOT NULL,
+    row_number          NUMBER              NOT NULL,
+    number_of_seats     NUMBER              NOT NULL,
     screening_room      NUMBER              NOT NULL,
 
     CONSTRAINT seats_row_pk PRIMARY KEY (id),
@@ -61,7 +65,7 @@ CREATE TABLE SEATS_ROW (
 CREATE TABLE SEAT (
     id                  NUMBER              NOT NULL,
     number_in_row       NUMBER              NOT NULL,
-    seats_row                 NUMBER              NOT NULL,
+    seats_row           NUMBER              NOT NULL,
 
     CONSTRAINT seat_pk PRIMARY KEY (id),
 

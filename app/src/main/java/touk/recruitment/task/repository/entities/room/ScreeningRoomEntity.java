@@ -11,7 +11,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Builder
@@ -24,5 +26,9 @@ public class ScreeningRoomEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
+  private Integer numberOfRows;
+
+  private String name;
 
 }

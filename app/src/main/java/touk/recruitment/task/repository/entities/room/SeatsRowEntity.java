@@ -15,7 +15,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Builder
@@ -28,6 +30,10 @@ public class SeatsRowEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
+  private Integer rowNumber;
+
+  private Integer numberOfSeats;
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "screening_room", nullable = false)

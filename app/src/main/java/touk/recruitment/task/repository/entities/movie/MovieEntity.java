@@ -15,7 +15,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Builder
@@ -29,7 +31,7 @@ public class MovieEntity {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private String name;
+  private String title;
 
   private Integer runtime;
 
