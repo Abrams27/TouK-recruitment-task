@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import touk.recruitment.task.ScreeningReservationApi;
 import touk.recruitment.task.models.AvailableScreeningsDto;
@@ -29,12 +28,12 @@ public class ScreeningReservationController implements ScreeningReservationApi {
   }
 
   @Override
-  public ResponseEntity<ScreeningRoomDto> getScreeningDetails(Long id) {
+  public ScreeningRoomDto getScreeningDetails(Long id) {
     return getScreeningDetails.execute(id);
   }
 
   @Override
-  public ResponseEntity<ReservationResponseDto> postReservation(Long id, ReservationRequestDto request) {
-    return postReservation.execute(id, request);
+  public ReservationResponseDto postReservation(ReservationRequestDto request) {
+    return postReservation.execute(request);
   }
 }

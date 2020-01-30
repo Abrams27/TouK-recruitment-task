@@ -9,4 +9,5 @@ public class SeatDto {
 
   private Integer rowNumber;
   private Integer numberInRow;
+
 }

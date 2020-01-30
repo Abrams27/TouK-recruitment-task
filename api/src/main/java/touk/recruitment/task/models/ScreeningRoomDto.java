@@ -10,4 +10,5 @@ public class ScreeningRoomDto {
 
   private Long screeningRoomId;
   private List<SeatDto> availableSeats;
+
 }

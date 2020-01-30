@@ -8,22 +8,21 @@ import lombok.experimental.UtilityClass;
 import touk.recruitment.task.models.ScreeningRoomDto;
 import touk.recruitment.task.models.SeatDto;
 import touk.recruitment.task.repositories.entities.room.ScreeningRoomEntity;
+import touk.recruitment.task.repositories.entities.room.SeatEntity;
 import touk.recruitment.task.repositories.entities.room.SeatsRowEntity;
 
 @UtilityClass
 public class ScreeningRoomDtoMapper {
 
-  public ScreeningRoomDto map(ScreeningRoomEntity screeningRoomEntity) {
+  public ScreeningRoomDto map(Long screeningRoomId, List<SeatEntity> availableSeats) {
     return ScreeningRoomDto.builder()
-        .screeningRoomId(screeningRoomEntity.getId())
-        .availableSeats(mapSeats(screeningRoomEntity.getSeatsRows()))
+        .screeningRoomId(screeningRoomId)
+        .availableSeats(mapSeats(availableSeats))
         .build();
   }
 
-  private List<SeatDto> mapSeats(Set<SeatsRowEntity> seatsRows) {
+  private List<SeatDto> mapSeats(List<SeatEntity> seatsRows) {
     return seatsRows.stream()
-        .map(SeatsRowEntity::getSeats)
-        .flatMap(Collection::stream)
         .map(SeatDtoMapper::map)
         .collect(Collectors.toList());
   }

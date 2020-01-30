@@ -25,4 +25,5 @@ public class AvailableScreeningsDtoMapper {
         .map(MovieScreeningDtoMapper::map)
         .collect(Collectors.toList());
   }
+
 }

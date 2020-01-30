@@ -9,7 +9,7 @@ import touk.recruitment.task.models.SeatDto;
 @Builder
 public class ReservationRequestDto {
 
+  private Long screeningId;
   private UserDto user;
-  private Long screeningRoomId;
   private List<SeatDto> seats;
 }

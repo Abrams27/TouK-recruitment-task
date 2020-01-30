@@ -1,25 +1,24 @@
 package touk.recruitment.task.usecase;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import touk.recruitment.task.mappers.dto.ScreeningRoomDtoMapper;
 import touk.recruitment.task.models.ScreeningRoomDto;
-import touk.recruitment.task.repositories.ScreeningRepository;
-import touk.recruitment.task.repositories.entities.ScreeningEntity;
+import touk.recruitment.task.repositories.entities.room.SeatEntity;
+import touk.recruitment.task.services.ScreeningAvailableSeatsService;
 
 @Component
 @AllArgsConstructor
 public class GetScreeningDetails {
 
-  private ScreeningRepository screeningRepository;
+  private ScreeningAvailableSeatsService screeningAvailableSeatsService;
 
-  public ResponseEntity<ScreeningRoomDto> execute(Long id) {
-    return screeningRepository.findById(id)
-        .map(ScreeningEntity::getRoom)
-        .map(ScreeningRoomDtoMapper::map)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
+  public ScreeningRoomDto execute(Long id) {
+    Long screeningRoomId = screeningAvailableSeatsService.getScreeningRoomIdOfScreening(id);
+    List<SeatEntity> availableSeats = screeningAvailableSeatsService.getAvailableSeatsOnScreening(id);
+
+    return ScreeningRoomDtoMapper.map(screeningRoomId, availableSeats);
   }
 
 }

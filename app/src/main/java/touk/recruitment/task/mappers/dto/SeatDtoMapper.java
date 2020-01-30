@@ -13,4 +13,5 @@ public class SeatDtoMapper {
         .numberInRow(seatEntity.getNumberInRow())
         .build();
   }
+
 }

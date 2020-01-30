@@ -14,4 +14,5 @@ public class MovieScreeningDtoMapper {
         .screeningBeginning(screeningEntity.getTime())
         .build();
   }
+
 }
