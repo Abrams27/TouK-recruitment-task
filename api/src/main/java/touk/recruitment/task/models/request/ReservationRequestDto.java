@@ -12,4 +12,6 @@ public class ReservationRequestDto {
   private Long screeningId;
   private UserDto user;
   private List<SeatDto> seats;
+  private List<TicketsDto> tickets;
+
 }

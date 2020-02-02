@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import touk.recruitment.task.repositories.entities.ScreeningEntity;
 import touk.recruitment.task.repositories.entities.room.SeatEntity;
+import touk.recruitment.task.repositories.entities.ticket.TicketEntity;
 
 @Getter
 @Setter
@@ -42,6 +44,9 @@ public class ReservationEntity {
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "user", nullable = false)
   private UserEntity user;
+
+  @OneToMany(mappedBy = "reservation")
+  private Set<TicketEntity> tickets = new HashSet<>();
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(

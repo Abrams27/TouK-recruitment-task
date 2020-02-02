@@ -5,12 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import touk.recruitment.task.exceptions.InvalidScreeningIdException;
 import touk.recruitment.task.exceptions.SeatsAlreadyReservedException;
 import touk.recruitment.task.exceptions.WrongRowSeatsSelectionException;
 import touk.recruitment.task.models.SeatDto;
 import touk.recruitment.task.repositories.ReservationRepository;
-import touk.recruitment.task.repositories.ScreeningRepository;
 import touk.recruitment.task.repositories.entities.ScreeningEntity;
 import touk.recruitment.task.repositories.entities.reservation.ReservationEntity;
 import touk.recruitment.task.repositories.entities.room.SeatEntity;
@@ -22,10 +20,10 @@ import touk.recruitment.task.resolvers.SeatsReservationResolver;
 @AllArgsConstructor
 public class ScreeningAvailableSeatsService {
 
-  private ScreeningRepository screeningRepository;
   private ReservationRepository reservationRepository;
   private SeatsReservationDistanceResolver seatsReservationDistanceResolver;
   private SeatsReservationResolver seatsReservationResolver;
+  private ScreeningService screeningService;
 
   public List<SeatEntity> getAvailableSeatsOnScreening(Long screeningId) {
     List<SeatEntity> reservedSeats = getReservedSeatsOnScreening(screeningId);
@@ -33,12 +31,6 @@ public class ScreeningAvailableSeatsService {
     return getAllSeatsInTheScreeningRoomOnScreening(screeningId).stream()
         .filter(seatEntity -> seatsReservationResolver.isNotReserved(seatEntity, reservedSeats))
         .collect(Collectors.toList());
-  }
-
-  public Long getScreeningRoomIdOfScreening(Long screeningId) {
-    return getScreeningEntity(screeningId)
-        .getRoom()
-        .getId();
   }
 
   public void validateSeatsToReservation(Long screeningId, List<SeatDto> seats) {
@@ -54,7 +46,7 @@ public class ScreeningAvailableSeatsService {
   }
 
   private List<SeatEntity> getReservedSeatsOnScreening(Long screeningId) {
-    ScreeningEntity screeningEntity = getScreeningEntity(screeningId);
+    ScreeningEntity screeningEntity = screeningService.getScreeningEntity(screeningId);
 
     return reservationRepository
         .findAllByScreening(screeningEntity).stream()
@@ -64,18 +56,12 @@ public class ScreeningAvailableSeatsService {
   }
 
   private List<SeatEntity> getAllSeatsInTheScreeningRoomOnScreening(Long screeningId) {
-    return getScreeningEntity(screeningId)
+    return screeningService.getScreeningEntity(screeningId)
         .getRoom()
         .getSeatsRows().stream()
         .map(SeatsRowEntity::getSeats)
         .flatMap(Collection::stream)
         .collect(Collectors.toList());
-  }
-
-  private ScreeningEntity getScreeningEntity(Long screeningId) {
-    return screeningRepository
-        .findById(screeningId)
-        .orElseThrow(() -> new InvalidScreeningIdException("No screening with such id"));
   }
 
 }
