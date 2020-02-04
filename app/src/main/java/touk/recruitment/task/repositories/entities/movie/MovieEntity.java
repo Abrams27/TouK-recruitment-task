@@ -31,7 +31,7 @@ import touk.recruitment.task.repositories.entities.ScreeningEntity;
 public class MovieEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String title;

@@ -32,6 +32,7 @@ public class MakeReservationService {
       List<TicketsDto> tickets) {
     ReservationEntity reservationEntity = buildReservationEntity(screeningId, user, seats, tickets);
 
+
     return reservationRepository.save(reservationEntity);
   }
 

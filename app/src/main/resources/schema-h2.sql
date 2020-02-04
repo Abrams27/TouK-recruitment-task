@@ -1,5 +1,5 @@
 CREATE TABLE MOVIE_DIRECTOR (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     name                VARCHAR(30)         NOT NULL,
     surname             TEXT                NOT NULL,
 
@@ -7,7 +7,7 @@ CREATE TABLE MOVIE_DIRECTOR (
 );
 
 CREATE TABLE MOVIE (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     title               TEXT                NOT NULL,
     runtime             NUMBER              NOT NULL,
     director            NUMBER              NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE MOVIE (
 
 
 CREATE TABLE TICKET_TYPE (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     name                VARCHAR(30)         NOT NULL,
     price               DECIMAL             NOT NULL,
 
@@ -34,7 +34,7 @@ CREATE TABLE TICKET_TYPE (
 );
 
 CREATE TABLE USER (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY              NOT NULL,
     name                VARCHAR(60)         NOT NULL,
     surname             TEXT                NOT NULL,
 
@@ -42,7 +42,7 @@ CREATE TABLE USER (
 );
 
 CREATE TABLE SCREENING_ROOM (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     number_of_rows      NUMBER              NOT NULL,
     name                VARCHAR(30),
 
@@ -51,7 +51,7 @@ CREATE TABLE SCREENING_ROOM (
 );
 
 CREATE TABLE SEATS_ROW (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     row_number          NUMBER              NOT NULL,
     number_of_seats     NUMBER              NOT NULL,
     screening_room      NUMBER              NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE SEATS_ROW (
 );
 
 CREATE TABLE SEAT (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     number_in_row       NUMBER              NOT NULL,
     seats_row           NUMBER              NOT NULL,
 
@@ -74,7 +74,7 @@ CREATE TABLE SEAT (
 );
 
 CREATE TABLE SCREENING (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     time                DATETIME            NOT NULL,
     movie               NUMBER              NOT NULL,
     room                NUMBER              NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE SCREENING (
 );
 
 CREATE TABLE RESERVATION (
-     id                  NUMBER              NOT NULL,
+     id                  IDENTITY            NOT NULL,
      screening           NUMBER              NOT NULL,
      user                NUMBER              NOT NULL,
 
@@ -101,7 +101,7 @@ CREATE TABLE RESERVATION (
 );
 
 CREATE TABLE TICKET (
-    id                  NUMBER              NOT NULL,
+    id                  IDENTITY            NOT NULL,
     type                NUMBER              NOT NULL,
     reservation         NUMBER              NOT NULL,
 

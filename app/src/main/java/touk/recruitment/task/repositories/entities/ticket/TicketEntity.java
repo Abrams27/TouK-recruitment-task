@@ -27,7 +27,7 @@ import touk.recruitment.task.repositories.entities.reservation.ReservationEntity
 public class TicketEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

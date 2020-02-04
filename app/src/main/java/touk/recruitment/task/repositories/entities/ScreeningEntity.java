@@ -29,7 +29,7 @@ import touk.recruitment.task.repositories.entities.room.ScreeningRoomEntity;
 public class ScreeningEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private LocalDateTime time;

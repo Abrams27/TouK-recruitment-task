@@ -31,10 +31,10 @@ import touk.recruitment.task.repositories.entities.ticket.TicketEntity;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
 @Table(name = "RESERVATION")
-public class ReservationEntity {
+public class  ReservationEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
