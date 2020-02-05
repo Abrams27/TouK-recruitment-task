@@ -18,10 +18,18 @@ public class SeatsReservationDistanceResolver {
   }
 
   private boolean isShiftedSeatReserved(SeatDto seatDto, List<SeatEntity> reservedSeats) {
+    return isShiftedSeatReservedLeft(seatDto, reservedSeats)
+        || isShiftedSeatReservedRight(seatDto, reservedSeats);
+  }
+
+  private boolean isShiftedSeatReservedLeft(SeatDto seatDto, List<SeatEntity> reservedSeats) {
+    return isShiftedSeatReserved(seatDto, reservedSeats, -2)
+        && !isShiftedSeatReserved(seatDto, reservedSeats, -1);
+  }
+
+  private boolean isShiftedSeatReservedRight(SeatDto seatDto, List<SeatEntity> reservedSeats) {
     return isShiftedSeatReserved(seatDto, reservedSeats, 2)
-        && isShiftedSeatReserved(seatDto, reservedSeats, 1)
-        && isShiftedSeatReserved(seatDto, reservedSeats, -2)
-        && isShiftedSeatReserved(seatDto, reservedSeats, -1);
+        && !isShiftedSeatReserved(seatDto, reservedSeats, 1);
   }
 
   private boolean isShiftedSeatReserved(SeatDto seatDto, List<SeatEntity> reservedSeats, Integer shift) {
