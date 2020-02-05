@@ -19,7 +19,7 @@ import touk.recruitment.task.models.ReservationResponseDto;
 @RequestMapping("/reservation")
 public interface ScreeningReservationApi {
 
-  @GetMapping("/available")
+  @GetMapping("available")
   List<AvailableScreeningsDto> getAvailableScreening(
       @RequestParam(required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate date,
       @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME)LocalTime intervalBeginning,
