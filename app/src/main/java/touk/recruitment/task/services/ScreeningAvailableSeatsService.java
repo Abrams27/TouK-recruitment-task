@@ -7,12 +7,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import touk.recruitment.task.exceptions.SeatsAlreadyReservedException;
 import touk.recruitment.task.exceptions.WrongRowSeatsSelectionException;
+import touk.recruitment.task.exceptions.WrongSeatException;
 import touk.recruitment.task.models.SeatDto;
 import touk.recruitment.task.repositories.ReservationRepository;
 import touk.recruitment.task.repositories.entities.ScreeningEntity;
 import touk.recruitment.task.repositories.entities.reservation.ReservationEntity;
 import touk.recruitment.task.repositories.entities.room.SeatEntity;
 import touk.recruitment.task.repositories.entities.room.SeatsRowEntity;
+import touk.recruitment.task.resolvers.SeatsExistenceResolver;
 import touk.recruitment.task.resolvers.SeatsReservationDistanceResolver;
 import touk.recruitment.task.resolvers.SeatsReservationResolver;
 
@@ -20,10 +22,14 @@ import touk.recruitment.task.resolvers.SeatsReservationResolver;
 @AllArgsConstructor
 public class ScreeningAvailableSeatsService {
 
-  private ReservationRepository reservationRepository;
+  private ScreeningService screeningService;
+
   private SeatsReservationDistanceResolver seatsReservationDistanceResolver;
   private SeatsReservationResolver seatsReservationResolver;
-  private ScreeningService screeningService;
+  private SeatsExistenceResolver seatsExistenceResolver;
+
+  private ReservationRepository reservationRepository;
+
 
   public List<SeatEntity> getAvailableSeatsOnScreening(Long screeningId) {
     List<SeatEntity> reservedSeats = getReservedSeatsOnScreening(screeningId);
@@ -35,6 +41,12 @@ public class ScreeningAvailableSeatsService {
 
   public void validateSeatsToReservation(Long screeningId, List<SeatDto> seats) {
     List<SeatEntity> reservedSeats = getReservedSeatsOnScreening(screeningId);
+    List<SeatEntity> allSeatsInScreeningRoom = getAllSeatsInTheScreeningRoomOnScreening(screeningId);
+
+
+    if (seatsExistenceResolver.isAnyNotInRoom(seats, allSeatsInScreeningRoom)) {
+      throw new WrongSeatException("No such seat in screening room");
+    }
 
     if (seatsReservationResolver.isAnyReserved(seats, reservedSeats)) {
       throw new SeatsAlreadyReservedException("Seat already reserved");
