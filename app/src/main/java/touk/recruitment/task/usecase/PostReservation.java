@@ -14,11 +14,12 @@ public class PostReservation {
 
   private ScreeningAvailableSeatsService screeningAvailableSeatsService;
   private MakeReservationService makeReservationService;
+  private ReservationResponseDtoMapper reservationResponseDtoMapper;
 
   public ReservationResponseDto execute(ReservationRequestDto request) {
     screeningAvailableSeatsService.validateSeatsToReservation(request.getScreeningId(), request.getSeats());
 
-    return ReservationResponseDtoMapper
+    return reservationResponseDtoMapper
         .map(makeReservationService
             .makeReservation(request.getScreeningId(), request.getUser(), request.getSeats(), request.getTickets()));
   }

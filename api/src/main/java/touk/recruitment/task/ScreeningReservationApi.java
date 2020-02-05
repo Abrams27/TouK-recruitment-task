@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import touk.recruitment.task.models.AvailableScreeningsDto;
+import touk.recruitment.task.models.ReservationResponseDto;
 import touk.recruitment.task.models.ScreeningRoomDto;
 import touk.recruitment.task.models.request.ReservationRequestDto;
-import touk.recruitment.task.models.ReservationResponseDto;
 
 @RequestMapping("/reservation")
 public interface ScreeningReservationApi {
@@ -22,8 +22,8 @@ public interface ScreeningReservationApi {
   @GetMapping("available")
   List<AvailableScreeningsDto> getAvailableScreening(
       @RequestParam(required = true) @DateTimeFormat(iso = ISO.DATE) LocalDate date,
-      @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME)LocalTime intervalBeginning,
-      @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME)LocalTime intervalEnding);
+      @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME) LocalTime intervalBeginning,
+      @RequestParam(required = true) @DateTimeFormat(iso = ISO.TIME) LocalTime intervalEnding);
 
 
   @GetMapping("details/{id}")

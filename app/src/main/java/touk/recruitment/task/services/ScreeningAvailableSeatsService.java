@@ -43,7 +43,6 @@ public class ScreeningAvailableSeatsService {
     List<SeatEntity> reservedSeats = getReservedSeatsOnScreening(screeningId);
     List<SeatEntity> allSeatsInScreeningRoom = getAllSeatsInTheScreeningRoomOnScreening(screeningId);
 
-
     if (seatsExistenceResolver.isAnyNotInRoom(seats, allSeatsInScreeningRoom)) {
       throw new WrongSeatException("No such seat in screening room");
     }

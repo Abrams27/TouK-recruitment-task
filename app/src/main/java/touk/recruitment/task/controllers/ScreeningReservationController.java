@@ -23,7 +23,8 @@ public class ScreeningReservationController implements ScreeningReservationApi {
   private PostReservation postReservation;
 
   @Override
-  public List<AvailableScreeningsDto> getAvailableScreening(LocalDate date, LocalTime intervalBeginning, LocalTime intervalEnding) {
+  public List<AvailableScreeningsDto> getAvailableScreening(LocalDate date, LocalTime intervalBeginning,
+      LocalTime intervalEnding) {
     return getAvailableScreening.execute(date, intervalBeginning, intervalEnding);
   }
 
